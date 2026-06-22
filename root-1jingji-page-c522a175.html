@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一竞技 · 日常查询与对照指南</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+            background: #f5f9fb;
+            color: #1a2b3c;
+            line-height: 1.6;
+            padding: 0 1rem 3rem;
+            min-height: 100vh;
+        }
+
+        .page-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ---------- 顶部导航 ---------- */
+        .top-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0 0.5rem;
+            border-bottom: 2px solid #cde2e8;
+            flex-wrap: wrap;
+            gap: 0.5rem 1rem;
+        }
+
+        .brand {
+            font-weight: 600;
+            font-size: 1.3rem;
+            letter-spacing: 0.02em;
+            color: #1f6d7a;
+        }
+
+        .brand span {
+            background: #1f6d7a;
+            color: #fff;
+            padding: 0.1rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1f4d57;
+            font-size: 0.9rem;
+            padding: 0.2rem 0.1rem;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #2b8c9e;
+            color: #12424e;
+        }
+
+        /* ---------- hero 区 ---------- */
+        .hero {
+            margin: 2.5rem 0 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-weight: 550;
+            font-size: 2.2rem;
+            color: #12424e;
+            letter-spacing: 0.01em;
+            line-height: 1.3;
+        }
+
+        .hero .sub {
+            margin-top: 0.7rem;
+            color: #3a606b;
+            max-width: 620px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.05rem;
+        }
+
+        .hero .badge-grid {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1rem;
+            margin-top: 1.4rem;
+            justify-content: center;
+        }
+
+        .badge-grid span {
+            background: #e2f0f3;
+            padding: 0.25rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: #1a4c58;
+            border: 1px solid #b7d6de;
+        }
+
+        /* ---------- 介绍块（引用式） ---------- */
+        .intro-block {
+            background: #ffffffdd;
+            backdrop-filter: blur(4px);
+            padding: 1.8rem 2rem;
+            border-radius: 24px;
+            margin: 2rem 0;
+            box-shadow: 0 6px 18px rgba(0,40,50,0.04);
+            border: 1px solid #d2e6ec;
+        }
+
+        .intro-block p {
+            margin-bottom: 0.8rem;
+        }
+
+        .intro-block a {
+            color: #167384;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: 500;
+        }
+
+        .intro-block a:hover {
+            color: #0a4c59;
+        }
+
+        /* ---------- 场景卡片网格 ---------- */
+        .scene-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin: 2.2rem 0;
+        }
+
+        .scene-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.6rem 1.2rem 1.4rem;
+            box-shadow: 0 6px 14px rgba(40, 80, 90, 0.04);
+            border: 1px solid #d7e7ed;
+            transition: transform 0.1s ease, box-shadow 0.2s;
+        }
+
+        .scene-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(20, 70, 80, 0.06);
+            border-color: #b5d4de;
+        }
+
+        .scene-card .icon {
+            background: #c5e2ea;
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 0.9rem;
+            color: #1a5a67;
+        }
+
+        .scene-card h3 {
+            font-size: 1.15rem;
+            font-weight: 530;
+            margin-bottom: 0.4rem;
+            color: #143d47;
+        }
+
+        .scene-card p {
+            font-size: 0.92rem;
+            color: #2a4e58;
+            margin-bottom: 0.3rem;
+        }
+
+        .scene-card .meta-note {
+            display: block;
+            margin-top: 0.7rem;
+            font-size: 0.78rem;
+            color: #597a84;
+            border-left: 3px solid #b4d5df;
+            padding-left: 0.7rem;
+        }
+
+        /* ---------- 常见说明 (FAQ 摘要) ---------- */
+        .faq-section {
+            margin: 2.8rem 0 1.5rem;
+        }
+
+        .faq-section h2 {
+            font-size: 1.3rem;
+            font-weight: 520;
+            color: #12424e;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .faq-section h2:after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, #b6d5df, transparent);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem 1.4rem;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1rem 1.2rem 0.9rem;
+            border: 1px solid #daeaf0;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 540;
+            color: #0f505e;
+            margin-bottom: 0.3rem;
+            font-size: 0.95rem;
+        }
+
+        .faq-item p {
+            font-size: 0.88rem;
+            color: #2b5663;
+        }
+
+        .faq-item a {
+            color: #167384;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        /* ---------- 页脚 ---------- */
+        .footer-note {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #597f8a;
+            border-top: 1px solid #cfe0e6;
+            padding-top: 1.5rem;
+        }
+
+        .footer-note a {
+            color: #1a6c7a;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        /* ---------- 响应式 ---------- */
+        @media (max-width: 820px) {
+            .scene-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 580px) {
+            body {
+                padding: 0 0.6rem 2rem;
+            }
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            .top-nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-links {
+                gap: 0.8rem;
+            }
+            .scene-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            .intro-block {
+                padding: 1.2rem 1rem;
+            }
+            .badge-grid span {
+                font-size: 0.75rem;
+                padding: 0.15rem 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- 顶部导航 -->
+    <nav class="top-nav">
+        <div class="brand">
+            <a href="https://root-1jingji.com" style="text-decoration:none;color:inherit;">一竞技</a>
+            <span>手册</span>
+        </div>
+        <div class="nav-links">
+            <a href="#">查询</a>
+            <a href="#">对照</a>
+            <a href="#">延伸</a>
+            <a href="#">说明</a>
+        </div>
+    </nav>
+
+    <!-- hero -->
+    <header class="hero">
+        <h1>查询 · 对照 · 延伸</h1>
+        <div class="sub">
+            围绕 <a href="https://root-1jingji.com" style="color:#167384;text-decoration:underline;">一竞技</a> 整理日常检索、数据对比与背景阅读，信息简洁可用。
+        </div>
+        <div class="badge-grid">
+            <span>🌱 术语速查</span>
+            <span>📊 数字对照</span>
+            <span>📖 延伸笔记</span>
+            <span>⚙️ 常见说明</span>
+        </div>
+    </header>
+
+    <!-- 介绍块 -->
+    <div class="intro-block">
+        <p>这个页面收录了日常使用中频繁涉及的基本条目、对照参数以及相关的简要解释。内容主要来自公开资料与常规整理，适合作为快速参考。</p>
+        <p>你可以随时回到 <a href="https://root-1jingji.com">一竞技</a> 查阅完整信息，这里只提供摘要式检索和对照功能，不做深度分析或断言。</p>
+    </div>
+
+    <!-- 三个场景模块：日常查询、对照、延伸阅读 -->
+    <div class="scene-grid">
+        <div class="scene-card">
+            <div class="icon">🔍</div>
+            <h3>日常查询</h3>
+            <p>分类索引、常用条目、关键数字。减少翻找时间，直接定位所需。</p>
+            <span class="meta-note">涵盖基础字段与快速筛选</span>
+        </div>
+        <div class="scene-card">
+            <div class="icon">⚖️</div>
+            <h3>对照</h3>
+            <p>横向对比版本、规格、参数或描述差异，辅助判断与理解。</p>
+            <span class="meta-note">差异点用表格或并排列出</span>
+        </div>
+        <div class="scene-card">
+            <div class="icon">📚</div>
+            <h3>延伸阅读</h3>
+            <p>关联背景、词条溯源、简短注解。适合想再多了解一点的时候。</p>
+            <span class="meta-note">每篇控制在 200 字内</span>
+        </div>
+    </div>
+
+    <!-- 常见说明 (FAQ 摘要) -->
+    <section class="faq-section">
+        <h2>常见说明</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <strong>数据更新频率？</strong>
+                <p>本页面内容随 <a href="https://root-1jingji.com">一竞技</a> 主要版本更新而调整，通常延后 1–2 个工作日同步。</p>
+            </div>
+            <div class="faq-item">
+                <strong>如何快速对照？</strong>
+                <p>每个场景卡片下方有对照入口，点击可展开并排视图。也可使用顶部导航的「对照」直达。</p>
+            </div>
+            <div class="faq-item">
+                <strong>延伸阅读的来源？</strong>
+                <p>主要来自公开文档、维基类站点以及行业白皮书摘要，每条均附有原文链接。</p>
+            </div>
+            <div class="faq-item">
+                <strong>遇到不一致怎么办？</strong>
+                <p>请以 <a href="https://root-1jingji.com">一竞技</a> 官方页面为准，此处为辅助参考性质。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <div class="footer-note">
+        <p>信息整理 · 日常查询与对照 · 2025</p>
+        <p>主站：<a href="https://root-1jingji.com">一竞技</a></p>
+    </div>
+
+</div>
+</body>
+</html>
